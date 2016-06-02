@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     // Toogle attendance
     $('.switch-people-attendance').change(function() {
-        $.get("/attendance?id="+$(this).attr('people')+"&attendance="+$(this).is(":checked"));
+        $.get("/post-appel?id="+$(this).attr('people')+"&attendance="+$(this).is(":checked"));
     });
 
 });
