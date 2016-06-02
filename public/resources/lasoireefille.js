@@ -17,9 +17,7 @@ $(document).ready(function () {
     // http://stackoverflow.com/questions/2898740/iphone-safari-web-app-opens-links-in-new-window
     $(document).on('click', 'a', function(event) {
         var href = $(this).attr("href");
-        if (href.indexOf(location.hostname) > -1) {
-            event.preventDefault();
-            window.location = href;
-        }
+        event.preventDefault();
+        window.location = href;
     });
 });
