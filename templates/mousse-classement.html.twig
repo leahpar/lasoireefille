@@ -66,9 +66,6 @@
                     {% endif %}
                     </div>
                 </span>
-                <!--<span class="mdl-list__item-secondary-content">-->
-                <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
-                <!--</span>-->
             </li>
             {% endfor %}
         </ul>
@@ -101,12 +98,36 @@
                     </span>
                 </span>
                 <span class="mdl-list__item-secondary-content">
-                    {{ (mousse.rating*100)|number_format(0, ',', ' ') }}%
+                    {#{{ (mousse.rating*100)|number_format(0, ',', ' ') }}%#}
+                    {% set star0 = '<i class="material-icons"  style="font-size: 15px !important">star_border</i>' %}
+                    {% set star1 = '<i class="material-icons"  style="font-size: 15px !important">star_half</i>' %}
+                    {% set star2 = '<i class="material-icons"  style="font-size: 15px !important">star</i>' %}
+                    <div style="min-width: 80px">
+                        {% if mousse.rating == 1 %}
+                            {{ (star2 ~ star2 ~ star2 ~ star2 ~ star2)|raw }}
+                        {% elseif mousse.rating > 0.9 %}
+                            {{ (star2 ~ star2 ~ star2 ~ star2 ~ star1)|raw }}
+                        {% elseif mousse.rating > 0.8 %}
+                            {{ (star2 ~ star2 ~ star2 ~ star2 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.7 %}
+                            {{ (star2 ~ star2 ~ star2 ~ star1 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.6 %}
+                            {{ (star2 ~ star2 ~ star2 ~ star0 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.5 %}
+                            {{ (star2 ~ star2 ~ star1 ~ star0 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.4 %}
+                            {{ (star2 ~ star2 ~ star0 ~ star0 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.3 %}
+                            {{ (star2 ~ star1 ~ star0 ~ star0 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.2 %}
+                            {{ (star2 ~ star0 ~ star0 ~ star0 ~ star0)|raw }}
+                        {% elseif mousse.rating > 0.1 %}
+                            {{ (star1 ~ star0 ~ star0 ~ star0 ~ star0)|raw }}
+                        {% else %}
+                            {{ (star0 ~ star0 ~ star0 ~ star0 ~ star0)|raw }}
+                        {% endif %}
+                    </div>
                 </span>
-                    <!--<span class="mdl-list__item-secondary-content">-->
-                    <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
-                    <!--</span>-->
-                </li>
             {% endfor %}
         </ul>
     </div>
