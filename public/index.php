@@ -17,7 +17,7 @@ require '../config.php';
 // APP -----------------------------------------------------------------------------------------------------------------
 
 $app = new \Slim\App(["settings" => $config]);
-
+$user = $_SERVER['REMOTE_USER'];
 $container = $app->getContainer();
 
 // DB CONNECTION -------------------------------------------------------------------------------------------------------
@@ -62,35 +62,64 @@ $app->get('/hello/{name}', function (Request $request, Response $response, $args
     ]);
 })->setName('hello_world');
 
-// ROUTES ------------------------------------------------------------------------------------------------------- Mousse
+// ROUTES -------------------------------------------------------------------------------------------------------- Index
 
-
-$app->get('/', function (Request $request, Response $response, $args) {
-    return $response->withHeader('Location', $this->router->pathFor('mousse_classement'));
+$app->get('/', function (Request $request, Response $response, $args) use ($user) {
+    return $response->withHeader('Location', $this->router->pathFor('attendance'));
 })->setName('home');
 
+// ROUTES --------------------------------------------------------------------------------------------------- Attendance
 
-$app->get('/voter-pour-ma-mousse', function (Request $request, Response $response, $args) {
+$app->get('/attendance', function (Request $request, Response $response, $args) use ($user) {
 
-    $st = $this->db->prepare("SELECT id, name, description FROM mousse");
+    $st = $this->db->prepare("SELECT id, name, name_canonical, attendance FROM people");
     $st->execute();
-    $mousses = $st->fetchAll(PDO::FETCH_CLASS, "Mousse");
-    shuffle($mousses);
+    $peoples = $st->fetchAll(PDO::FETCH_CLASS, "People");
 
-    $user = $_SERVER['REMOTE_USER'];
-    $st = $this->db->prepare("SELECT id, name FROM people where name = '$user'");
+    setlocale(LC_TIME, 'fr_FR');
+//    $lundi = date('Y-m-d', strtotime('monday'));
+    $lundi = $month_name = strftime('%e %B', strtotime('monday'));
+    return $this->view->render($response, 'attendance.html.twig', [
+        'peoples' => $peoples,
+        'user' => $user,
+        'lundi' => $lundi
+    ]);
+})->setName('attendance');
+
+$app->get('/attendance_update', function (Request $request, Response $response, $args) use ($user) {
+
+    $input = $request->getQueryParams(); // $_GET
+    $st = $this->db->prepare("UPDATE people SET attendance = ".$input['attendance']." WHERE id = ".$input['id']);
+    $st->execute();
+    return $response;
+})->setName('attendance_udpate');
+
+// ROUTES ------------------------------------------------------------------------------------------------------- Mousse
+
+$app->get('/voter-pour-ma-mousse', function (Request $request, Response $response) use ($user) {
+
+    $st = $this->db->prepare("SELECT id, name, name_canonical FROM people where name_canonical = '$user'");
     $st->execute();
     $people = $st->fetchAll(PDO::FETCH_CLASS, "People")[0];
-    var_dump($people);
+
+    $st = $this->db->prepare("
+        SELECT COALESCE(COUNT(1), 0) + rand() * 5 as occurrence, id, name, description
+        FROM mousse m
+        left join rating r on (r.mousseA_id = m.id or r.mousseB_id = m.id)
+        and r.people_id = ".$people->id."
+        group by m.id
+        order by 1 asc");
+    $st->execute();
+    $mousses = $st->fetchAll(PDO::FETCH_CLASS, "Mousse");
+    // shuffle($mousses);
 
     return $this->view->render($response, 'mousse-voter.html.twig', [
-        'mousses' => array_slice($mousses, 0, 2),
+        'mousseA' => $mousses[rand(0,10)], // less rated mousses
+        'mousseB' => $mousses[rand(11, count($mousses)-1)], // other mousses
         'people' => $people,
         'user' => $user
     ]);
 })->setName('mousse_voter');
-
-
 
 $app->get('/post-vote', function (Request $request, Response $response, $args) {
 
@@ -112,8 +141,7 @@ $app->get('/post-vote', function (Request $request, Response $response, $args) {
     return $response->withHeader('Location', $this->router->pathFor('mousse_voter'));
 })->setName('mousse_post_voter');
 
-
-$app->get('/le-classement-des-mousses', function (Request $request, Response $response, $args) {
+$app->get('/le-classement-des-mousses', function (Request $request, Response $response, $args) use ($user) {
 
     $sql = "
         SELECT
@@ -133,7 +161,6 @@ $app->get('/le-classement-des-mousses', function (Request $request, Response $re
         return $a->getRating() < $b->getRating();
     });
 
-    $user = $_SERVER['REMOTE_USER'];
     $sql = "
         SELECT
             m.id,

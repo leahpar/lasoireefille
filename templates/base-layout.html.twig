@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>La mousse de la soirée fille</title>
+    <title>{{ block('title') }}</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -24,14 +24,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.pink-cyan.min.css" />
-    {#<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">#}
-    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
 
-
-    <style type="text/css">
-        /*.mdl-menu__container { height:0px !important; } .mdl-menu__container.is_visible { height:auto; }*/
-    </style>
 </head>
 <body>
 
@@ -39,20 +32,21 @@
     <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
             <!-- Title -->
-            <span class="mdl-layout-title">La mousse de la soirée fille</span>
-            <!-- Add spacer, to align menu to the right -->
-            <div class="mdl-layout-spacer"></div>
+            <span class="mdl-layout-title">{{ block('title') }}</span>
 
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-                <a class="mdl-navigation__link" href="{{ path_for('mousse_voter') }}">Voter pour les mousses</a>
-                <a class="mdl-navigation__link" href="{{ path_for('mousse_classement') }}">Voir le classement</a>
-            </nav>
+            {#<div class="mdl-layout-spacer"></div>#}
+
+            {#<nav class="mdl-navigation mdl-layout--large-screen-only">#}
+                {#<a class="mdl-navigation__link" href="{{ path_for('mousse_voter') }}">Voter pour les mousses</a>#}
+                {#<a class="mdl-navigation__link" href="{{ path_for('mousse_classement') }}">Voir le classement</a>#}
+            {#</nav>#}
         </div>
     </header>
 
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">La mousse</span>
         <nav class="mdl-navigation" style="flex-grow: 1;">
+            <a class="mdl-navigation__link" href="{{ path_for('attendance') }}">Répondre à l'appel</a>
             <a class="mdl-navigation__link" href="{{ path_for('mousse_voter') }}">Voter pour les mousses</a>
             <a class="mdl-navigation__link" href="{{ path_for('mousse_classement') }}">Voir le classement</a>
             <div class="mdl-layout-spacer"></div>
@@ -81,6 +75,11 @@
         {#</div>#}
     {#</footer>#}
 </div>
+
+<script src="https://code.getmdl.io/1.1.3/material.min.js" defer></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.2.0/list.min.js"></script>
+<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="resources/lasoireefille.js"></script>
 
 </body>
 </html>

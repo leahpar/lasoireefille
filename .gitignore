@@ -3,6 +3,7 @@ vendor/*
 
 # Divers
 node_modules
+.htaccess
 .htpasswd
 config.php
 cache/*

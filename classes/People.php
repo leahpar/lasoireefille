@@ -12,4 +12,14 @@ class People {
      */
     public $name;
 
+    /**
+     * @var string
+     */
+    public $name_canonical;
+
+    /**
+     * @var boolean
+     */
+    public $attendance;
+
 }

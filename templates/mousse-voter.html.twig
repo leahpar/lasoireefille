@@ -1,31 +1,34 @@
 {% extends "base-layout.html.twig" %}
+
+{% block title %}Voter pour les mousses{% endblock %}
+
 {% block content %}
 
 <div class="mdl-grid">
     <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
         <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">{{ mousses[0].name }}</h2>
+            <h2 class="mdl-card__title-text">{{ mousseA.name }}</h2>
         </div>
         <div class="mdl-card__supporting-text mdl-card--expand">
-            {{ mousses[0].description }}
+            {{ mousseA.description }}
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                href="{{ path_for('mousse_post_voter') }}?vote={{ people.id }}-{{ mousses[0].id }}-{{ mousses[1].id }}-{{ mousses[0].id }}">
+                href="{{ path_for('mousse_post_voter') }}?vote={{ people.id }}-{{ mousseA.id }}-{{ mousseB.id }}-{{ mousseA.id }}">
                 Miam !
             </a>
         </div>
     </div>
     <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
         <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">{{ mousses[1].name }}</h2>
+            <h2 class="mdl-card__title-text">{{ mousseB.name }}</h2>
         </div>
         <div class="mdl-card__supporting-text mdl-card--expand">
-            {{ mousses[1].description }}
+            {{ mousseB.description }}
         </div>
         <div class="mdl-card__actions mdl-card--border">
             <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-               href="{{ path_for('mousse_post_voter') }}?vote={{ people.id }}-{{ mousses[0].id }}-{{ mousses[1].id }}-{{ mousses[1].id }}">
+               href="{{ path_for('mousse_post_voter') }}?vote={{ people.id }}-{{ mousseA.id }}-{{ mousseB.id }}-{{ mousseB.id }}">
                 Miam !
             </a>
         </div>
