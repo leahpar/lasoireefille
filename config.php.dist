@@ -1,0 +1,7 @@
+<?php
+
+$config['db']['host'] = "localhost";
+$config['db']['user'] = "user";
+$config['db']['pass'] = "pass";
+$config['db']['dbname'] = "dbname";
+$config['db']['charset'] = "utf8";

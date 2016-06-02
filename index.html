@@ -1,0 +1,166 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Mousse</title>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+</head>
+<body>
+
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+        mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Mousse</span>
+
+            <!-- Add spacer, to align menu to the right -->
+            <div class="mdl-layout-spacer"></div>
+
+            <button id="demo-menu-lower-right"
+                    class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                for="demo-menu-lower-right">
+                <li class="mdl-menu__item">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                        <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="julie">
+                        <span class="mdl-radio__label">Julie</span>
+                    </label>
+                </li>
+                <li class="mdl-menu__item">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                        <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="morgane">
+                        <span class="mdl-radio__label">Morgane</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Voter</a>
+            <a href="#fixed-tab-2" class="mdl-layout__tab">Les mousses</a>
+        </div>
+    </header>
+
+    <!-- Left menu -->
+    <!--<div class="mdl-layout__drawer">-->
+        <!--<span class="mdl-layout-title">Title</span>-->
+    <!--</div>-->
+
+
+
+    <main class="mdl-layout__content">
+
+        <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+            <div class="page-content">
+
+
+
+                <div class="mdl-grid">
+                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">La classique</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-card--expand">
+                            La mousse au chocolat originale, mère de toutes les mousses.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                Miam !
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet">
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">Marrons</h2>
+                        </div>
+                        <div class="mdl-card__supporting-text mdl-card--expand">
+                            Mousse chocolat à la crème de marrons. Variante : avec des morceaux glacés de marrons dedans.
+                        </div>
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                                Miam !
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+
+        <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+            <div class="page-content">
+
+                <!-- Rechercher une mousse -->
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="expando1">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="expando1">
+                        <label class="mdl-textfield__label" for="expando1">Expandable text field</label>
+                    </div>
+                </div>
+
+                <ul class="mdl-list">
+                    <li class="mdl-list__item mdl-list__item--three-line">
+                        <span class="mdl-list__item-primary-content">
+                            <span>La classique</span>
+                            <span class="mdl-list__item-text-body">
+                                La mousse au chocolat originale, mère de toutes les mousses.
+                            </span>
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                            4,5
+                        </span>
+                        <!--<span class="mdl-list__item-secondary-content">-->
+                            <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
+                        <!--</span>-->
+                    </li>
+                    <li class="mdl-list__item mdl-list__item--three-line">
+                        <span class="mdl-list__item-primary-content">
+                            <span>Marrons</span>
+                            <span class="mdl-list__item-text-body">
+                                Mousse chocolat à la crème de marrons. Variante : avec des morceaux glacés de marrons dedans.
+                            </span>
+                        </span>
+                        <span class="mdl-list__item-secondary-content">
+                            4,2
+                        </span>
+                        <!--<span class="mdl-list__item-secondary-content">-->
+                            <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
+                        <!--</span>-->
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <footer class="mdl-mini-footer">
+        <div class="mdl-mini-footer__left-section">
+            <div class="mdl-logo">Title</div>
+            <ul class="mdl-mini-footer__link-list">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

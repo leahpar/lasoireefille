@@ -1,0 +1,93 @@
+{% extends "base-layout.html.twig" %}
+{% block content %}
+
+
+<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div class="mdl-tabs__tab-bar">
+        <a href="#general" class="mdl-tabs__tab is-active">Général</a>
+        <a href="#moi" class="mdl-tabs__tab">Moi</a>
+    </div>
+
+    <div class="mdl-tabs__panel is-active" id="general">
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <!-- Rechercher une mousse -->
+            <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="expando1">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input search" type="text" id="expando1">
+                    <label class="mdl-textfield__label" for="expando1">Expandable text field</label>
+                </div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <ul class="mdl-list list">
+            {% for mousse in mousses %}
+            <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content">
+                    <span class="mousse_name">{{ mousse.name }}</span>
+                    <span class="mdl-list__item-text-body mousse_description">
+                        {{ mousse.description }}
+                    </span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    {{ (mousse.rating*100)|number_format(0, ',', ' ') }}%
+                </span>
+                <!--<span class="mdl-list__item-secondary-content">-->
+                <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
+                <!--</span>-->
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="mdl-tabs__panel" id="moi">
+
+        <div class="mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <!-- Rechercher une mousse -->
+            <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="expando2">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input search" type="text" id="expando2">
+                    <label class="mdl-textfield__label" for="expando2">Expandable text field</label>
+                </div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+
+        <ul class="mdl-list list">
+            {% for mousse in mousses_user %}
+                <li class="mdl-list__item mdl-list__item--three-line">
+                <span class="mdl-list__item-primary-content mousse_description">
+                    <span class="mousse_name">{{ mousse.name }}</span>
+                    <span class="mdl-list__item-text-body">
+                        {{ mousse.description }}
+                    </span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    {{ (mousse.rating*100)|number_format(0, ',', ' ') }}%
+                </span>
+                    <!--<span class="mdl-list__item-secondary-content">-->
+                    <!--<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>-->
+                    <!--</span>-->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+    var options = {
+        valueNames: [ 'mousse_name', 'mousse_description' ]
+    };
+    var generalList = new List('general', options);
+    var moiList = new List('moi', options);
+</script>
+{% endblock content %}
