@@ -70,7 +70,7 @@ $app->get('/', function (Request $request, Response $response, $args) use ($user
 
 // ROUTES --------------------------------------------------------------------------------------------------- Attendance
 
-$app->get('/attendance', function (Request $request, Response $response, $args) use ($user) {
+$app->get('/appel', function (Request $request, Response $response, $args) use ($user) {
 
     $st = $this->db->prepare("SELECT id, name, name_canonical, attendance FROM people");
     $st->execute();
@@ -86,7 +86,7 @@ $app->get('/attendance', function (Request $request, Response $response, $args) 
     ]);
 })->setName('attendance');
 
-$app->get('/attendance_update', function (Request $request, Response $response, $args) use ($user) {
+$app->get('/post-appel', function (Request $request, Response $response, $args) use ($user) {
 
     $input = $request->getQueryParams(); // $_GET
     $st = $this->db->prepare("UPDATE people SET attendance = ".$input['attendance']." WHERE id = ".$input['id']);

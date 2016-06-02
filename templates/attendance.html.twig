@@ -1,0 +1,41 @@
+{% extends "base-layout.html.twig" %}
+
+{% block title %}L'appel de la soirée fille{% endblock %}
+
+{% block content %}
+<div class="mdl-grid">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--8-col-phone">
+        <div class="mdl-card__title">
+            {#<h2 class="mdl-card__title-text">Qui sera là lundi {{ lundi|date('d/m') }} ?</h2>#}
+            <h2 class="mdl-card__title-text">Qui sera là lundi {{ lundi }} ?</h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-card--expand">
+            <ul class="mdl-list">
+                {% for people in peoples %}
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        {{ people.name }}
+                    </span>
+                    <span class="mdl-list__item-secondary-action">
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-{{ people.id }}">
+                            <input type="checkbox" id="switch-{{ people.id }}" class="mdl-switch__input switch-people-attendance" people="{{ people.id }}"
+                                {#{% if user != people.name_canonical %}#}
+                                    {#disabled#}
+                                {#{% endif %}#}
+                                {% if people.attendance == 1 %}
+                                    checked
+                                {% endif %}
+                            >
+                            <span class="mdl-switch__label"></span>
+                        </label>
+                    </span>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+
+{% endblock content %}
