@@ -8,3 +8,8 @@ AuthName "Accès restreint"
 AuthType Basic
 AuthUserFile "/Users/raphael/projets/lasoireefille/.htpasswd"
 Require valid-user
+
+<FilesMatch "\.(png|jpe?g|gif)$">
+  Satisfy Any
+  Allow from all
+</FilesMatch>
