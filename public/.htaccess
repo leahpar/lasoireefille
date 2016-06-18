@@ -4,7 +4,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 
 
-AuthName "Accès restreint"
-AuthType Basic
-AuthUserFile "/Users/raphael/projets/lasoireefille/.htpasswd"
-Require valid-user
+#AuthName "Accès restreint"
+#AuthType Basic
+#AuthUserFile "/cygdrive/c/xampp/htdocs/lasoireefille/.htpasswd"
+#Require valid-user

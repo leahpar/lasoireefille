@@ -22,4 +22,9 @@ class People {
      */
     public $attendance;
 
+    /**
+     * @var int
+     */
+    public $height;
+
 }
