@@ -122,19 +122,18 @@ $app->get('/voter-pour-ma-mousse', function (Request $request, Response $respons
     ]);
 })->setName('mousse_voter');
 
-$app->get('/post-vote', function (Request $request, Response $response, $args) {
+$app->get('/post-vote', function (Request $request, Response $response, $args) use ($user) {
 
     $input = $request->getQueryParams();
     $rating = explode('-', $input['vote']);
 
-    $people_id  = $rating[0];
-    $mousseA_id = $rating[1];
-    $mousseB_id = $rating[2];
-    $mousse_id  = $rating[3];
+    $mousseA_id = $rating[0];
+    $mousseB_id = $rating[1];
+    $mousse_id  = $rating[2];
 
     $st = $this->db->prepare("
         INSERT INTO rating (people_id, mousseA_id, mousseB_id, mousse_id)
-        VALUES ($people_id, $mousseA_id, $mousseB_id, $mousse_id)
+        VALUES ($user->id, $mousseA_id, $mousseB_id, $mousse_id)
         ON DUPLICATE KEY UPDATE mousse_id=$mousse_id
         ");
     $st->execute();
