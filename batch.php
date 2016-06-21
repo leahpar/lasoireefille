@@ -60,7 +60,6 @@ elseif ($argv[2] == 'incoming-sms')
 
         echo "SMS $sms_id ($user->name)\n";
 
-        $done = false;
         if (false !== stripos("oui", $sms['message'])) {
             echo "=> OUI\n";
             $sql = "UPDATE people SET attendance = 1 WHERE id = $user->id";
@@ -68,7 +67,7 @@ elseif ($argv[2] == 'incoming-sms')
 
             $done = true;
         }
-        if (false !== stripos("non", $sms['message'])) {
+        elseif (false !== stripos("non", $sms['message'])) {
             echo "=> NON\n";
             $sql = "UPDATE people SET attendance = 0 WHERE id = $user->id";
             $pdo->query($sql);
@@ -152,7 +151,7 @@ elseif ($argv[2] == 'send-sms-delestage') {
             // +33681760350
             $senders[] = $user->phone;
     }
-    $message = "$user->name, c'est la balance qui te parle ! Quel est ton poids aujourd'hui ?";
+    $message = "C'est la balance qui te parle ! Quel est ton poids aujourd'hui ?";
     sendSms($conn, $smsService, "soireefille", $message, $senders);
 }
 die('ok');
