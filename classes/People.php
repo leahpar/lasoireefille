@@ -15,6 +15,11 @@ class People {
     /**
      * @var string
      */
+    public $phone;
+
+    /**
+     * @var string
+     */
     public $name_canonical;
 
     /**

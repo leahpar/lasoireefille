@@ -5,3 +5,9 @@ $config['db']['user'] = "user";
 $config['db']['pass'] = "pass";
 $config['db']['dbname'] = "dbname";
 $config['db']['charset'] = "utf8";
+
+$config['ovh']['applicationKey']    = "--";
+$config['ovh']['applicationSecret'] = "--";
+$config['ovh']['consumer_key']      = "--";
+$config['ovh']['smsService']        = "sms-xxxxx-1";
+$config['ovh']['endpoint']          = 'ovh-eu';
